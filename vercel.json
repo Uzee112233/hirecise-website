@@ -1,0 +1,25 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "www.hirecise.com" }],
+      "destination": "https://hirecise.com/$1",
+      "permanent": true
+    },
+    { "source": "/login",            "destination": "https://app.hirecise.com/login",            "permanent": false },
+    { "source": "/register",         "destination": "https://app.hirecise.com/register",         "permanent": false },
+    { "source": "/dashboard",        "destination": "https://app.hirecise.com/dashboard",        "permanent": false },
+    { "source": "/dashboard/:path*", "destination": "https://app.hirecise.com/dashboard/:path*", "permanent": false },
+    { "source": "/settings",         "destination": "https://app.hirecise.com/settings",         "permanent": false },
+    { "source": "/settings/:path*",  "destination": "https://app.hirecise.com/settings/:path*",  "permanent": false },
+    { "source": "/jobs",             "destination": "https://app.hirecise.com/jobs",             "permanent": false },
+    { "source": "/jobs/:path*",      "destination": "https://app.hirecise.com/jobs/:path*",      "permanent": false },
+    { "source": "/candidates",       "destination": "https://app.hirecise.com/candidates",       "permanent": false },
+    { "source": "/candidates/:path*","destination": "https://app.hirecise.com/candidates/:path*","permanent": false },
+    { "source": "/pipeline",         "destination": "https://app.hirecise.com/pipeline",         "permanent": false },
+    { "source": "/analytics",        "destination": "https://app.hirecise.com/analytics",        "permanent": false },
+    { "source": "/interviews",       "destination": "https://app.hirecise.com/interviews",       "permanent": false },
+    { "source": "/forgot-password",  "destination": "https://app.hirecise.com/forgot-password",  "permanent": false },
+    { "source": "/reset-password",   "destination": "https://app.hirecise.com/reset-password",   "permanent": false }
+  ]
+}

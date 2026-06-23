@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hirecise — AI Hiring Assistant. From Job Post to Shortlist in Minutes.</title>
+  <meta name="description" content="Hirecise AI instantly ranks, scores, and shortlists your best candidates. Go from job post to interview-ready shortlist in under 5 minutes. 14-day free trial.">
+  <meta name="keywords" content="AI hiring assistant, AI CV screening, resume ranking software, candidate shortlisting, AI recruitment tool">
+  <link rel="canonical" href="https://hirecise.com/">
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://hirecise.com/">
+  <meta property="og:title"       content="Hirecise — Job Post to Ranked Shortlist in Under 5 Minutes">
+  <meta property="og:description" content="AI-powered CV ranking and shortlisting for recruiters and HR teams. 14-day free trial — no credit card needed.">
+  <meta property="og:site_name"   content="Hirecise">
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Hirecise — AI Hiring Assistant">
+  <meta name="twitter:description" content="Stop wasting hours on CVs. AI ranks and shortlists candidates in minutes.">
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"SoftwareApplication",
+    "name":"Hirecise",
+    "url":"https://hirecise.com",
+    "description":"AI-powered hiring assistant that screens, ranks, and shortlists candidates in minutes.",
+    "applicationCategory":"BusinessApplication",
+    "operatingSystem":"Web",
+    "offers":[
+      {"@type":"Offer","price":"99","priceCurrency":"USD","name":"Starter"},
+      {"@type":"Offer","price":"199","priceCurrency":"USD","name":"Growth"}
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+
+  <style>
+    /* ── Stats Bar ─────────────────────────────────────── */
+    .stats-bar {
+      background: #fff;
+      border-bottom: 1px solid var(--slate-200);
+      padding: 0;
+    }
+    .stats-bar-inner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 20px;
+      border-right: 1px solid var(--slate-200);
+      text-align: center;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-value {
+      font-size: 2.5rem;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -.04em;
+      background: var(--grad-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 6px;
+    }
+    .stat-label {
+      font-size: .8125rem;
+      font-weight: 500;
+      color: var(--slate-500);
+      line-height: 1.4;
+    }
+    @media (max-width: 700px) {
+      .stats-bar-inner { grid-template-columns: repeat(2, 1fr); }
+      .stat-item { border-right: 1px solid var(--slate-200); border-bottom: 1px solid var(--slate-200); }
+      .stat-item:nth-child(2n) { border-right: none; }
+      .stat-item:nth-last-child(-n+2) { border-bottom: none; }
+      .stat-value { font-size: 2rem; }
+    }
+
+    /* ── Before / After Section ─────────────────────────── */
+    .before-after {
+      padding: 96px 0;
+      background: var(--slate-900);
+      color: #fff;
+    }
+    .before-after .section-header h2,
+    .before-after .section-header p { color: #fff; }
+    .before-after .section-header p { color: rgba(255,255,255,.6); }
+    .ba-grid {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 0;
+      max-width: 900px;
+      margin: 0 auto;
+      align-items: stretch;
+    }
+    .ba-col {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .ba-col.good { background: rgba(37,99,235,.12); border-color: rgba(37,99,235,.35); }
+    .ba-header {
+      padding: 20px 28px;
+      font-weight: 700;
+      font-size: 1rem;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .ba-col.good .ba-header { border-bottom-color: rgba(37,99,235,.25); }
+    .ba-row {
+      padding: 16px 28px;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .ba-row:last-child { border-bottom: none; }
+    .ba-row-label { font-size: .75rem; font-weight: 600; color: rgba(255,255,255,.4); text-transform: uppercase; letter-spacing: .06em; }
+    .ba-row-val { font-size: .9375rem; font-weight: 600; color: rgba(255,255,255,.85); }
+    .ba-col.good .ba-row-val { color: #93c5fd; }
+    .ba-vs {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 24px;
+      font-weight: 800;
+      font-size: 1rem;
+      color: rgba(255,255,255,.25);
+      letter-spacing: .08em;
+    }
+    @media (max-width: 700px) {
+      .ba-grid { grid-template-columns: 1fr; gap: 16px; }
+      .ba-vs { padding: 8px 0; }
+    }
+
+    /* ── Trust Badges ──────────────────────────────────── */
+    .trust-badges {
+      background: var(--slate-50);
+      padding: 56px 0;
+      border-top: 1px solid var(--slate-200);
+      border-bottom: 1px solid var(--slate-200);
+    }
+    .trust-badges-label {
+      text-align: center;
+      font-size: .75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--slate-400);
+      margin-bottom: 28px;
+    }
+    .trust-badges-grid {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .trust-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff;
+      border: 1px solid var(--slate-200);
+      border-radius: 999px;
+      padding: 10px 18px;
+      font-size: .8125rem;
+      font-weight: 600;
+      color: var(--slate-700);
+      box-shadow: var(--shadow-sm);
+      white-space: nowrap;
+    }
+    .trust-badge svg { flex-shrink: 0; }
+
+    /* ── Integrations ──────────────────────────────────── */
+    .integrations {
+      padding: 80px 0;
+      background: #fff;
+    }
+    .integrations-label {
+      text-align: center;
+      font-size: .8125rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--slate-400);
+      margin-bottom: 32px;
+    }
+    .integrations-grid {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .integration-chip {
+      background: var(--slate-50);
+      border: 1px solid var(--slate-200);
+      border-radius: 10px;
+      padding: 12px 22px;
+      font-size: .875rem;
+      font-weight: 600;
+      color: var(--slate-600);
+      transition: all .2s;
+    }
+    .integration-chip:hover {
+      background: var(--blue-50);
+      border-color: var(--blue-200);
+      color: var(--blue-700);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .integrations-note {
+      text-align: center;
+      margin-top: 20px;
+      font-size: .8125rem;
+      color: var(--slate-400);
+    }
+
+    /* ── Improved testimonial numbers ─────────────────── */
+    .testi-stat {
+      display: inline-block;
+      background: var(--blue-50);
+      color: var(--blue-700);
+      border: 1px solid var(--blue-200);
+      border-radius: 6px;
+      font-size: .75rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      margin-bottom: 10px;
+      letter-spacing: .02em;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAVIGATION ═══════════════════════════════════ -->
+<header>
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo" aria-label="Hirecise home">
+          <img src="assets/logo.svg" alt="Hirecise" class="logo-img">
+        </a>
+        <div class="nav-links" aria-label="Site links">
+          <a href="index.html">Home</a>
+          <a href="features.html">Features</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="nav-actions">
+          <a href="https://app.hirecise.com/login" class="btn btn-ghost btn-sm">Log In</a>
+          <a href="https://app.hirecise.com/register" class="btn btn-primary btn-sm">Start Free Trial</a>
+        </div>
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+          <svg class="icon-open" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          <svg class="icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="nav-mobile">
+        <a href="index.html">Home</a>
+        <a href="features.html">Features</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="contact.html">Contact</a>
+        <div class="nav-mobile-actions">
+          <a href="https://app.hirecise.com/login" class="btn btn-outline">Log In</a>
+          <a href="https://app.hirecise.com/register" class="btn btn-primary">Start Free Trial</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- ═══ HERO ══════════════════════════════════════════ -->
+<section class="hero" aria-labelledby="hero-heading">
+  <div class="hero-noise" aria-hidden="true"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <span class="badge badge-blue">
+          <svg width="8" height="8" viewBox="0 0 8 8" fill="#10b981" style="animation:pulse-glow 2s ease-in-out infinite;border-radius:50%;"><circle cx="4" cy="4" r="4"/></svg>
+          14-day free trial — no credit card needed
+        </span>
+        <h1 id="hero-heading">
+          From job post to<br>
+          <span class="hero-headline-accent">ranked shortlist in minutes</span>
+        </h1>
+        <p style="font-size:1.125rem;margin-bottom:12px;">
+          Hirecise AI reads every CV, scores each candidate 0–100, and delivers your top picks — in the time it takes to make a coffee.
+        </p>
+        <p style="font-size:.9375rem;color:var(--slate-400);margin-bottom:28px;">
+          No manual screening. No missed candidates. No guesswork.
+        </p>
+        <div class="hero-actions">
+          <a href="https://app.hirecise.com/register" class="btn btn-primary btn-lg">
+            Start Free Trial
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="8" x2="13" y2="8"/><polyline points="9 4 13 8 9 12"/></svg>
+          </a>
+          <a href="pricing.html" class="btn btn-outline btn-lg">See Plans</a>
+        </div>
+        <div class="hero-proof">
+          <div class="hero-avatars" aria-hidden="true">
+            <span>SC</span><span>MR</span><span>PS</span><span>JK</span>
+          </div>
+          <p class="hero-proof-text"><strong>150+ recruiters &amp; HR teams</strong> already hire smarter</p>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="dashboard-card">
+          <div class="dashboard-card-header">
+            <div class="dc-title">🎯 AI Candidate Ranking</div>
+            <div class="dc-sub">Sales Manager · 62 CVs processed · 4 min 12 sec</div>
+          </div>
+          <div class="dashboard-card-body">
+            <div class="candidate-row">
+              <div class="cand-avatar">NK</div>
+              <div class="cand-info">
+                <div class="cand-name">Nadia Khan</div>
+                <div class="cand-role">7 yrs · B2B Sales, CRM, Team Lead</div>
+              </div>
+              <span class="score-chip score-high">96 · Top Pick</span>
+            </div>
+            <div class="candidate-row">
+              <div class="cand-avatar">JM</div>
+              <div class="cand-info">
+                <div class="cand-name">James Murphy</div>
+                <div class="cand-role">5 yrs · SaaS Sales, Salesforce</div>
+              </div>
+              <span class="score-chip score-high">89 · Shortlisted</span>
+            </div>
+            <div class="candidate-row">
+              <div class="cand-avatar">RL</div>
+              <div class="cand-info">
+                <div class="cand-name">Riya Lal</div>
+                <div class="cand-role">4 yrs · Account Mgmt, HubSpot</div>
+              </div>
+              <span class="score-chip score-good">74 · Recommended</span>
+            </div>
+            <div class="candidate-row">
+              <div class="cand-avatar">TW</div>
+              <div class="cand-info">
+                <div class="cand-name">Tom Webb</div>
+                <div class="cand-role">2 yrs · Retail Sales</div>
+              </div>
+              <span class="score-chip score-medium">48 · Moderate</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STATS BAR ══════════════════════════════════════ -->
+<div class="stats-bar" aria-label="Key stats">
+  <div class="stats-bar-inner">
+    <div class="stat-item">
+      <div class="stat-value" data-count="4" data-suffix=" min">4 min</div>
+      <div class="stat-label">Average time to<br>ranked shortlist</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value" data-count="70" data-suffix="%">70%</div>
+      <div class="stat-label">Less time spent<br>on CV review</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value" data-count="40" data-suffix="×">40×</div>
+      <div class="stat-label">Faster than<br>manual screening</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value" data-count="150" data-suffix="+">150+</div>
+      <div class="stat-label">Teams hiring<br>smarter today</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ TRUST BAR — MARQUEE ════════════════════════════ -->
+<div class="trust-bar" aria-label="Trusted by companies">
+  <p class="trust-bar-label">Trusted by recruiting teams worldwide</p>
+  <div class="trust-bar-track">
+    <div class="trust-bar-marquee" aria-hidden="true">
+      <span>TechFlow</span><span class="trust-dot"></span>
+      <span>Velocity Labs</span><span class="trust-dot"></span>
+      <span>CloudNine</span><span class="trust-dot"></span>
+      <span>Nexora</span><span class="trust-dot"></span>
+      <span>Stackvault</span><span class="trust-dot"></span>
+      <span>Brightpath</span><span class="trust-dot"></span>
+      <span>RecruitEdge</span><span class="trust-dot"></span>
+      <span>HireWave</span><span class="trust-dot"></span>
+      <span>TechFlow</span><span class="trust-dot"></span>
+      <span>Velocity Labs</span><span class="trust-dot"></span>
+      <span>CloudNine</span><span class="trust-dot"></span>
+      <span>Nexora</span><span class="trust-dot"></span>
+      <span>Stackvault</span><span class="trust-dot"></span>
+      <span>Brightpath</span><span class="trust-dot"></span>
+      <span>RecruitEdge</span><span class="trust-dot"></span>
+      <span>HireWave</span><span class="trust-dot"></span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PROBLEM SECTION ════════════════════════════════ -->
+<section class="section" style="background:var(--slate-50);" aria-labelledby="problem-heading">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge badge-blue">The Problem</span>
+      <h2 id="problem-heading">Hiring is slow, expensive, and inconsistent</h2>
+      <p>Recruiters today face real challenges that slow down every hire and increase the risk of picking the wrong person.</p>
+    </div>
+    <div class="problem-grid fade-up" role="list">
+      <div class="problem-card">
+        <div class="problem-icon">⏰</div>
+        <div>
+          <h4>Too many CVs, too little time</h4>
+          <p>Reviewing hundreds of CVs manually takes days, not hours. Most get a 6-second glance.</p>
+        </div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">🎲</div>
+        <div>
+          <h4>Inconsistent screening</h4>
+          <p>Manual review is subjective. Different screeners make different calls on the same CV.</p>
+        </div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">💸</div>
+        <div>
+          <h4>Expensive and slow decisions</h4>
+          <p>Every delayed hire costs your business productivity, team morale, and competitive advantage.</p>
+        </div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">❌</div>
+        <div>
+          <h4>Good candidates slip through</h4>
+          <p>Rushed manual screening means strong candidates get overlooked while weak ones move forward.</p>
+        </div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">😩</div>
+        <div>
+          <h4>Recruiter burnout</h4>
+          <p>Repetitive CV filtering is draining. It leaves recruiters with less time for the work that matters.</p>
+        </div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">📉</div>
+        <div>
+          <h4>High cost of a bad hire</h4>
+          <p>A wrong hire costs up to 3× their salary. Poor screening is often where it starts.</p>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:48px;">
+      <p style="font-size:1.125rem;font-weight:600;color:var(--slate-700);margin-bottom:20px;">Traditional hiring methods are no longer enough.</p>
+      <a href="#solution" class="btn btn-primary btn-lg">See the Solution</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ BEFORE / AFTER ══════════════════════════════════ -->
+<section class="before-after" aria-labelledby="ba-heading">
+  <div class="container">
+    <div class="section-header" style="margin-bottom:52px;">
+      <span class="badge badge-dark">The Difference</span>
+      <h2 id="ba-heading" style="color:#fff;">Without Hirecise vs With Hirecise</h2>
+      <p style="color:rgba(255,255,255,.55);">See exactly what changes when you stop screening manually.</p>
+    </div>
+    <div class="ba-grid">
+      <div class="ba-col">
+        <div class="ba-header">
+          <span style="font-size:1.2rem;">😰</span> Without Hirecise
+        </div>
+        <div class="ba-row">
+          <div class="ba-row-label">Time to shortlist 100 CVs</div>
+          <div class="ba-row-val">15–20 hours of manual work</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-row-label">Screening consistency</div>
+          <div class="ba-row-val">Varies by screener and mood</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-row-label">Strong candidates missed</div>
+          <div class="ba-row-val">Frequently — rushed reviews</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-row-label">Interview prep time</div>
+          <div class="ba-row-val">1–2 hrs per candidate</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-row-label">Monthly cost</div>
+          <div class="ba-row-val">~$2,000 in recruiter time</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-row-label">Recruiter focus</div>
+          <div class="ba-row-val">Buried in CV stacks</div>
+        </div>
+      </div>
+
+      <div class="ba-vs">VS</div>
+
+      <div class="ba-col good">
+        <div class="ba-header">
+          <span style="font-size:1.2rem;">✅</span> With Hirecise
+        </div>
+        <div class="ba-row">
+          <div class="ba-row-label">Time to shortlist 100 CVs</div>
+          <div class="ba-row-val">Under 5 minutes, AI-ranked</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-row-label">Screening consistency</div>
+          <div class="ba-row-val">Standardised AI score 0–100</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-row-label">Strong candidates missed</div>
+          <div class="ba-row-val">Every CV evaluated equally</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-row-label">Interview prep time</div>
+          <div class="ba-row-val">AI questions generated instantly</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-row-label">Monthly cost</div>
+          <div class="ba-row-val">From $99/month flat rate</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-row-label">Recruiter focus</div>
+          <div class="ba-row-val">100% on interviews &amp; decisions</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:48px;">
+      <a href="https://app.hirecise.com/register" class="btn btn-white btn-lg">
+        Start Free Trial — 7 Days on Us
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="8" x2="13" y2="8"/><polyline points="9 4 13 8 9 12"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SOLUTION / HOW IT WORKS ════════════════════════ -->
+<section class="section how" id="solution" aria-labelledby="solution-heading">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge badge-blue">The Solution</span>
+      <h2 id="solution-heading">Meet Your AI Hiring Assistant</h2>
+      <p>No spreadsheets. No manual filtering. No guesswork. Just upload CVs and get a ranked shortlist in minutes.</p>
+    </div>
+    <div class="steps-grid fade-up" role="list">
+      <div class="step">
+        <div class="step-num" aria-hidden="true">1</div>
+        <h3>Create a Job</h3>
+        <p>Add your job title, description, and key requirements. Takes under 5 minutes to set up.</p>
+      </div>
+      <div class="step">
+        <div class="step-num" aria-hidden="true">2</div>
+        <h3>Candidates Apply</h3>
+        <p>Share your unique career page link. Candidates upload CVs directly — no email inbox required.</p>
+      </div>
+      <div class="step">
+        <div class="step-num" aria-hidden="true">3</div>
+        <h3>Get AI Results</h3>
+        <p>Every CV scored 0–100. Ranked shortlist, candidate summaries, and interview questions — ready instantly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FEATURES ═══════════════════════════════════════ -->
+<section class="section" aria-labelledby="features-heading">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge badge-blue">Features</span>
+      <h2 id="features-heading">Everything you need for modern hiring</h2>
+      <p>A focused set of AI tools built specifically for recruiters and HR teams — not a bloated system with features you'll never use.</p>
+    </div>
+    <div class="highlights-grid fade-up">
+      <article class="highlight-card">
+        <div class="highlight-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3>⚡ AI CV Ranking</h3>
+        <p>Every CV automatically scored and ranked on skills, experience, and job fit. No manual comparison needed.</p>
+      </article>
+      <article class="highlight-card">
+        <div class="highlight-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        </div>
+        <h3>🎯 Smart Shortlisting</h3>
+        <p>Instantly highlights your top candidates so you only spend time on the people worth interviewing.</p>
+      </article>
+      <article class="highlight-card">
+        <div class="highlight-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <h3>🧾 Bulk CV Processing</h3>
+        <p>Upload hundreds of CVs at once in PDF or Word format. The AI handles all parsing and analysis automatically.</p>
+      </article>
+      <article class="highlight-card">
+        <div class="highlight-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <h3>🧠 AI Interview Questions</h3>
+        <p>Generate tailored interview questions for each candidate based on their CV and the job. Unlimited on all paid plans.</p>
+      </article>
+      <article class="highlight-card">
+        <div class="highlight-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <h3>📊 Candidate Insights</h3>
+        <p>Understand each applicant's strengths and gaps at a glance — without reading every CV yourself.</p>
+      </article>
+      <article class="highlight-card">
+        <div class="highlight-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h3>👥 Pipeline &amp; Team Access</h3>
+        <p>Kanban pipeline to track candidates across stages. Invite your team to collaborate on shortlists and decisions.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ AI INTERVIEW SECTION ══════════════════════════ -->
+<section class="interview-section" aria-labelledby="interview-heading">
+  <div class="container">
+    <div class="interview-inner">
+      <div class="interview-text">
+        <span class="badge badge-blue" style="margin-bottom:16px;">
+          🧠 All Paid Plans
+        </span>
+        <h2 id="interview-heading">AI that prepares you for every interview</h2>
+        <p>Stop spending hours preparing interview questions from scratch. Hirecise generates targeted questions based on each candidate's actual CV and the role you're hiring for.</p>
+        <ul class="interview-list">
+          <li>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="rgba(52,211,153,0.2)"/><path d="M5 9l3 3 5-5" stroke="#34d399" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Technical skill verification questions
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="rgba(52,211,153,0.2)"/><path d="M5 9l3 3 5-5" stroke="#34d399" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Behavioral and situational questions
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="rgba(52,211,153,0.2)"/><path d="M5 9l3 3 5-5" stroke="#34d399" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Role-specific screening questions
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="rgba(52,211,153,0.2)"/><path d="M5 9l3 3 5-5" stroke="#34d399" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            CV-based custom questions per candidate
+          </li>
+        </ul>
+        <span class="interview-note">Unlimited on Starter ($99/mo) &amp; Growth ($199/mo) · 14-day free trial</span>
+      </div>
+
+      <div class="interview-visual" aria-hidden="true">
+        <div class="interview-card">
+          <div class="ic-header">
+            <h4>Interview Questions — Nadia Khan</h4>
+            <span class="ic-tag">AI Generated</span>
+          </div>
+          <div class="ic-body">
+            <div class="iq-item">
+              <div class="iq-type">Technical</div>
+              <div class="iq-text">Your CV mentions managing a CRM migration. What challenges did you face and how did you keep the team aligned?</div>
+            </div>
+            <div class="iq-item">
+              <div class="iq-type">Behavioral</div>
+              <div class="iq-text">Describe a time you turned around an underperforming sales territory. What was your approach in the first 90 days?</div>
+            </div>
+            <div class="iq-item">
+              <div class="iq-type">Role-Specific</div>
+              <div class="iq-text">You've sold primarily to enterprise clients. How would you adjust your approach for a mid-market sales cycle?</div>
+            </div>
+            <div class="iq-item">
+              <div class="iq-type">CV-Based</div>
+              <div class="iq-text">Your last role shows 40% revenue growth in year 2. Walk us through the key decisions that drove that result.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ USE CASES ══════════════════════════════════════ -->
+<section class="section" aria-labelledby="usecases-heading">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge badge-blue">Use Cases</span>
+      <h2 id="usecases-heading">Built for modern hiring teams</h2>
+      <p>Whether you hire 5 people a year or 500, Hirecise fits into your workflow without heavy setup.</p>
+    </div>
+    <div class="use-cases-grid">
+      <div class="use-case-card">
+        <span class="use-case-emoji">🏢</span>
+        <h4>Recruitment Agencies</h4>
+        <p>Screen clients' CV pools fast and deliver better shortlists without growing your team.</p>
+      </div>
+      <div class="use-case-card">
+        <span class="use-case-emoji">🚀</span>
+        <h4>Startups Hiring Fast</h4>
+        <p>Move quickly without a dedicated HR team. Post a role and have a shortlist the same day.</p>
+      </div>
+      <div class="use-case-card">
+        <span class="use-case-emoji">🏛️</span>
+        <h4>HR Departments</h4>
+        <p>Reduce manual screening hours by 70% and focus your team on final decisions.</p>
+      </div>
+      <div class="use-case-card">
+        <span class="use-case-emoji">🧑‍💼</span>
+        <h4>Freelance Recruiters</h4>
+        <p>Handle 3× more clients without burning out. Your competitive edge in a crowded market.</p>
+      </div>
+      <div class="use-case-card">
+        <span class="use-case-emoji">🌐</span>
+        <h4>Outsourcing Firms</h4>
+        <p>Process high volumes across multiple roles simultaneously. Scale without hiring more screeners.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ══════════════════════════════════ -->
+<section class="section testimonials" aria-labelledby="testimonials-heading">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge badge-blue">What Recruiters Say</span>
+      <h2 id="testimonials-heading">Real results from real hiring teams</h2>
+      <p>Not marketing claims — actual outcomes from recruiters who stopped screening manually.</p>
+    </div>
+    <div class="testimonials-grid fade-up" role="list">
+      <article class="testi-card">
+        <div class="testi-stars" aria-label="5 stars">★★★★★</div>
+        <div class="testi-stat">3 days → under 1 hour</div>
+        <p class="testi-text">"We used to spend 3 days just shortlisting. With Hirecise, we have a ranked shortlist in under an hour. The quality of candidates we actually interview has genuinely improved — fewer wasted interviews."</p>
+        <div class="testi-author">
+          <div class="testi-avatar" aria-hidden="true">SC</div>
+          <div>
+            <div class="testi-name">Sarah Chen</div>
+            <div class="testi-title">Head of Talent · TechFlow</div>
+          </div>
+        </div>
+      </article>
+      <article class="testi-card">
+        <div class="testi-stars" aria-label="5 stars">★★★★★</div>
+        <div class="testi-stat">3× more clients, same hours</div>
+        <p class="testi-text">"As a solo recruiter handling multiple clients, Hirecise is the only tool that actually saves me time. I now handle three times the volume I used to — and process a full CV batch before my morning coffee."</p>
+        <div class="testi-author">
+          <div class="testi-avatar" aria-hidden="true">MR</div>
+          <div>
+            <div class="testi-name">Marcus Reid</div>
+            <div class="testi-title">Freelance Recruiter</div>
+          </div>
+        </div>
+      </article>
+      <article class="testi-card">
+        <div class="testi-stars" aria-label="5 stars">★★★★★</div>
+        <div class="testi-stat">2 hrs saved per candidate</div>
+        <p class="testi-text">"The AI interview questions feature alone is worth the Pro plan. It saves our team at least 2 hours of prep per candidate. Our interviews are more structured, more effective, and we make better hiring decisions."</p>
+        <div class="testi-author">
+          <div class="testi-avatar" aria-hidden="true">PS</div>
+          <div>
+            <div class="testi-name">Priya Sharma</div>
+            <div class="testi-title">HR Manager · CloudNine</div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TRUST BADGES ════════════════════════════════════ -->
+<div class="trust-badges" aria-label="Security and trust">
+  <p class="trust-badges-label">Secure, private, and built for teams</p>
+  <div class="trust-badges-grid">
+    <div class="trust-badge">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      GDPR Compliant
+    </div>
+    <div class="trust-badge">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+      AES-256 Encrypted
+    </div>
+    <div class="trust-badge">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      SOC 2 Type II (in progress)
+    </div>
+    <div class="trust-badge">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      Data Never Sold
+    </div>
+    <div class="trust-badge">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      4.8 / 5 Customer Rating
+    </div>
+    <div class="trust-badge">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      No Long-term Contracts
+    </div>
+  </div>
+</div>
+
+<!-- ═══ INTEGRATIONS ════════════════════════════════════ -->
+<section class="integrations" aria-labelledby="integrations-heading">
+  <div class="container">
+    <p class="integrations-label" id="integrations-heading">Works alongside the tools your team already uses</p>
+    <div class="integrations-grid">
+      <div class="integration-chip">📋 LinkedIn Jobs</div>
+      <div class="integration-chip">🔍 Indeed</div>
+      <div class="integration-chip">🌿 Greenhouse</div>
+      <div class="integration-chip">☁️ Workday</div>
+      <div class="integration-chip">🎋 BambooHR</div>
+      <div class="integration-chip">⚙️ Lever</div>
+      <div class="integration-chip">🏗️ SmartRecruiters</div>
+      <div class="integration-chip">🔧 Workable</div>
+    </div>
+    <p class="integrations-note">Hirecise works as a standalone layer on top of any job board or ATS — no complex integration required.</p>
+  </div>
+</section>
+
+<!-- ═══ WHY US ══════════════════════════════════════════ -->
+<section class="section" style="background:var(--slate-50);" aria-labelledby="why-heading">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge badge-blue">Why Hirecise</span>
+      <h2 id="why-heading">Why recruiters choose us</h2>
+    </div>
+    <div class="highlights-grid fade-up">
+      <div class="highlight-card" style="text-align:center;">
+        <div style="font-size:2rem;margin-bottom:12px;">⚡</div>
+        <h3>Faster hiring decisions</h3>
+        <p>Go from job post to shortlist in minutes, not days. Reduce your time-to-interview by up to 90%.</p>
+      </div>
+      <div class="highlight-card" style="text-align:center;">
+        <div style="font-size:2rem;margin-bottom:12px;">🎯</div>
+        <h3>Better candidate quality</h3>
+        <p>AI-scored shortlists mean you spend interview time on the right people, not random picks from a pile.</p>
+      </div>
+      <div class="highlight-card" style="text-align:center;">
+        <div style="font-size:2rem;margin-bottom:12px;">🧘</div>
+        <h3>Less manual work</h3>
+        <p>Eliminate repetitive CV filtering. Focus your energy on interviews, offers, and final decisions.</p>
+      </div>
+      <div class="highlight-card" style="text-align:center;">
+        <div style="font-size:2rem;margin-bottom:12px;">📐</div>
+        <h3>Consistent, objective scoring</h3>
+        <p>Every CV evaluated on the same AI criteria. No unconscious bias, no inconsistency, no fatigue.</p>
+      </div>
+      <div class="highlight-card" style="text-align:center;">
+        <div style="font-size:2rem;margin-bottom:12px;">🛠️</div>
+        <h3>Simple and easy to use</h3>
+        <p>No complex setup, no training required. Post a job, share the link, and get results the same day.</p>
+      </div>
+      <div class="highlight-card" style="text-align:center;">
+        <div style="font-size:2rem;margin-bottom:12px;">💰</div>
+        <h3>Pays for itself immediately</h3>
+        <p>One good hire found faster than usual covers months of your plan. Starting from $99/month flat.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA BANNER ════════════════════════════════════ -->
+<section class="cta-banner" aria-labelledby="cta-heading">
+  <div class="container">
+    <h2 id="cta-heading">Ready to transform your hiring process?</h2>
+    <p>Join 150+ recruiting teams already using AI to hire faster and smarter. Your shortlist is 5 minutes away.</p>
+    <div class="cta-actions">
+      <a href="https://app.hirecise.com/register" class="btn btn-white btn-lg">Start Free Trial — 7 Days</a>
+      <a href="contact.html" class="btn btn-dark-outline btn-lg">Book a Demo</a>
+    </div>
+    <p class="cta-note">No credit card required · Plans from $99/mo · Cancel anytime</p>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" aria-label="Hirecise home">
+          <img src="assets/logo-white.svg" alt="Hirecise" class="logo-img" style="height:36px;">
+        </a>
+        <p>AI-powered hiring assistant for recruiters and HR teams. From job post to ranked shortlist in minutes.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Product</h5>
+        <ul>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="features.html#ai-scoring">AI CV Ranking</a></li>
+          <li><a href="features.html#interview">Interview Questions</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="contact.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="contact.html">Careers</a></li>
+          <li><a href="contact.html">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="security.html">Security</a></li>
+          <li><a href="cookies.html">Cookie Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Hirecise. All rights reserved.</p>
+      <p>Smarter hiring starts with better decisions &middot; <a href="mailto:hello@hirecise.com">hello@hirecise.com</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  // Count-up animation for stats bar
+  function animateCount(el) {
+    const target = parseInt(el.dataset.count, 10);
+    const suffix = el.dataset.suffix || '';
+    const duration = 1800;
+    const start = performance.now();
+    const update = (now) => {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      const current = Math.round(ease * target);
+      el.textContent = current + suffix;
+      if (progress < 1) requestAnimationFrame(update);
+    };
+    requestAnimationFrame(update);
+  }
+
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('[data-count]').forEach(animateCount);
+        statsObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.4 });
+
+  const statsBar = document.querySelector('.stats-bar');
+  if (statsBar) statsObserver.observe(statsBar);
+</script>
+</body>
+</html>
+
