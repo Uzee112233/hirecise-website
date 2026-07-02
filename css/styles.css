@@ -307,7 +307,7 @@ p  { color: #6B7280; line-height: 1.75; }
 
 /* Giant headline */
 .hero-title {
-  font-size: clamp(52px, 8.5vw, 88px);
+  font-size: clamp(44px, 7.5vw, 80px);
   font-weight: 900;
   letter-spacing: -.04em;
   line-height: 1.05;
@@ -1017,7 +1017,8 @@ p  { color: #6B7280; line-height: 1.75; }
   .compare-scroll-hint { display: block; }
 }
 @media (max-width: 480px) {
-  .hero-title        { font-size: clamp(40px, 11vw, 56px); }
+  .hero-title        { font-size: clamp(28px, 8.5vw, 40px); }
+  .hero-desc         { font-size: 1rem; margin-bottom: 28px; }
   .hero              { padding: 60px 0 72px; }
   .cta-actions       { flex-direction: column; width: 100%; }
   .cta-actions .btn  { width: 100%; max-width: 320px; }
